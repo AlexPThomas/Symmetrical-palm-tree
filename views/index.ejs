@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Angular QuickStart</title>
+  <base href="/">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/stylesheets/style.css" type = "text/css">
+  <link rel="icon" href="/favicon.ico?v=1" type="image/x-icon"/>
+  <!-- Polyfill(s) for older browsers -->
+  <script src="shim.min.js"></script>
+
+  <script src="zone.js"></script>
+  <script src="system.src.js"></script>
+
+  <script src="systemjs.config.js"></script>
+  <script>
+    System.import('/angular/main.js').catch(function(err){ console.error(err); });
+  </script>
+</head>
+
+<body>
+<img src="/images/love-birds.png">
+<h1>hello</h1>
+<my-app>Loading AppComponent content here ...</my-app>
+</body>
+</html>
