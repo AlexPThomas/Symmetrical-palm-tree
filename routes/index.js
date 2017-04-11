@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var spotifyDetails = require('./secretFile.js');
 var request = require('request');
+var dbQueries = require('./dbQueries.js');
 /* GET home page. */
 router.get('/', function(req, res, next) {
     res.render('login', { title: 'Songbirds' });
@@ -18,14 +19,15 @@ router.get('/auth', function(req, res){
 router.get('/callback', function (req, res) {
     var key = req.query.code;
     //res.send(key);
-    apiPost(key, res);
+    getSpotifyToken(key, res);
 });
 
 router.get('/main',function(req, res){
-    res.render('index', {title: 'Songbirds', })
+    dbQueries.checkConnected();
+    res.render('index', {title: 'Songbirds'})
 });
 
-function apiPost(key, res) {
+function getSpotifyToken(key, res) {
     var encoded_auth = (new Buffer(spotifyDetails.getSpotifyDetails().client_id +":"+ spotifyDetails.getSpotifyDetails().client_secret).toString("base64"));
     request.post(
         'https://accounts.spotify.com/api/token',
