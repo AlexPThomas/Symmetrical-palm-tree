@@ -5,7 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var index = require('./routes/index');
-var users = require('./routes/users');
+var api = require('./routes/api');
 
 var app = express();
 
@@ -27,8 +27,10 @@ app.use('/zone.js', express.static(__dirname + '/node_modules/zone.js/dist/zone.
 app.use('/system.src.js', express.static(__dirname + '/node_modules/systemjs/dist/system.src.js'));
 app.use('/angular', express.static(__dirname + '/views/app'));
 app.use('/node_modules', express.static(__dirname + '/node_modules'));
+app.use('/templates', express.static(__dirname + '/views/app/html-templates'));
 app.use('/', index);
-app.use('/users', users);
+app.use('/api', api);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

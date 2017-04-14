@@ -3,6 +3,9 @@ var router = express.Router();
 var spotifyDetails = require('./secretFile.js');
 var request = require('request');
 var dbQueries = require('./dbQueries.js');
+var nodeCache = require('node-cache');
+//stdTTL is the default timeout for each of the items stored
+var tempStorage = new nodeCache({stdTTL:100,checkperiod: 600});
 /* GET home page. */
 router.get('/', function(req, res, next) {
     res.render('login', { title: 'Songbirds' });
@@ -18,14 +21,22 @@ router.get('/auth', function(req, res){
 
 router.get('/callback', function (req, res) {
     var key = req.query.code;
-    //res.send(key);
     getSpotifyToken(key, res);
 });
 
 router.get('/main',function(req, res){
     dbQueries.checkConnected();
-    res.render('index', {title: 'Songbirds'})
+    var tokenKey = req.query.tokenKey;
+    var accessToken = tempStorage.get(tokenKey);
+    if(accessToken){
+        res.render('index', {title: 'Songbirds', tokenKey:tokenKey, accessToken: accessToken})
+    }else{
+        res.render('error',{message: 'error connecting your account with spotify', error:req.error});
+    }
+
 });
+
+
 
 function getSpotifyToken(key, res) {
     var encoded_auth = (new Buffer(spotifyDetails.getSpotifyDetails().client_id +":"+ spotifyDetails.getSpotifyDetails().client_secret).toString("base64"));
@@ -44,15 +55,24 @@ function getSpotifyToken(key, res) {
         function (error, response, body) {
             if (!error && response.statusCode == 200) {
                 var token = JSON.parse(body).access_token;
-                //spotifyApi.setAccessToken(token);
-                //console.log(token);
-                res.redirect("http://localhost:3000/main?accesstoken=" + token);
+                var randomKey = makeRandomString(6);
+                tempStorage.set(randomKey, token);
+                res.redirect("http://localhost:3000/main?tokenKey=" + randomKey);
             } else {
                 console.log(response.statusCode);
 
             }
         }
     );
+}
+
+function makeRandomString(size){
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    for (var i = 0; i < size; i++) {
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+    return text;
 }
 
 module.exports = router;
