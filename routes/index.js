@@ -15,28 +15,15 @@ router.get('/auth', function(req, res){
     var client_id = spotifyDetails.getSpotifyDetails().client_id;
     var response_type = 'code';
     var redirect_uri = spotifyDetails.getSpotifyDetails().redirect_uri;
+    var scopes = 'playlist-read-private playlist-read-collaborative playlist-modify-public playlist-modify-private user-follow-read user-read-email';
     //todo add state to the parameters so as to authenticate the request
-    res.redirect('https://accounts.spotify.com/authorize?client_id='+client_id+'&response_type='+response_type+'&redirect_uri='+redirect_uri);
+    res.redirect('https://accounts.spotify.com/authorize?client_id='+client_id+'&response_type='+response_type +'&scope=' + encodeURIComponent(scopes) + '&redirect_uri='+redirect_uri );
 });
 
 router.get('/callback', function (req, res) {
     var key = req.query.code;
     getSpotifyToken(key, res);
 });
-
-router.get('/main',function(req, res){
-    dbQueries.checkConnected();
-    var tokenKey = req.query.tokenKey;
-    var accessToken = tempStorage.get(tokenKey);
-    if(accessToken){
-        res.render('index', {title: 'Songbirds', tokenKey:tokenKey, accessToken: accessToken})
-    }else{
-        res.render('error',{message: 'error connecting your account with spotify', error:req.error});
-    }
-
-});
-
-
 
 function getSpotifyToken(key, res) {
     var encoded_auth = (new Buffer(spotifyDetails.getSpotifyDetails().client_id +":"+ spotifyDetails.getSpotifyDetails().client_secret).toString("base64"));
@@ -57,6 +44,7 @@ function getSpotifyToken(key, res) {
                 var token = JSON.parse(body).access_token;
                 var randomKey = makeRandomString(6);
                 tempStorage.set(randomKey, token);
+                res.cookie('tokenKey', randomKey);
                 res.redirect("http://localhost:3000/main?tokenKey=" + randomKey);
             } else {
                 console.log(response.statusCode);
@@ -65,6 +53,28 @@ function getSpotifyToken(key, res) {
         }
     );
 }
+
+router.get('/main',function(req, res){
+    dbQueries.checkConnected();
+    var tokenKey = req.query.tokenKey;
+    var accessToken = tempStorage.get(tokenKey);
+    var tokenKeyFromCookies = req.cookies.tokenKey;
+    if(accessToken){
+        //save to database here along with refresh token, email, other info
+    }
+    res.render('index', {title: 'Songbirds', tokenKey:tokenKey, accessToken: accessToken})
+
+});
+
+router.get('/token', function(req, res){
+    var tokenKey = req.cookies.tokenKey;
+    var accessToken = tempStorage.get(tokenKey);
+    res.setHeader('Content-Type', 'application/json');
+    console.log(tokenKey);
+    console.log(accessToken);
+    //res.send(JSON.stringify({}));
+    res.json({ accessToken: accessToken });
+});
 
 function makeRandomString(size){
     var text = "";
