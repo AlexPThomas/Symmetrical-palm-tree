@@ -1,5 +1,5 @@
 <div *ngIf="currentUser">
     <h1>Hello {{currentUser.display_name}}</h1>
-
+    <img class="userPicture" src="{{currentUser.images[0].url}}">
 </div>
 <loader [showLoader] = "!currentUser"></loader>

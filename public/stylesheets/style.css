@@ -15,3 +15,8 @@ a {
   padding: 3px;
   display: block;
 }
+
+.userPicture{
+  height:5vw;
+  border-radius: 50%;
+}
