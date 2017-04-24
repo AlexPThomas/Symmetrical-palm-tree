@@ -3,7 +3,9 @@
  */
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+
+import {SpotifyUser, SpotifyImage} from './SpotifyObjects.js';
+
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
@@ -13,8 +15,9 @@ export class APIService {
     apiUrl: string = '';
     accessToken: String = '';
     constructor(private http: Http){}
-    public initialise(): void {
-        this.http.get(this.apiUrl + '/token')
+
+    public initialise(): Promise<SpotifyUser> {
+        return this.http.get(this.apiUrl + '/token')
             .toPromise()
             .then(this.extractData)
             .then((body :any) => {
@@ -23,12 +26,9 @@ export class APIService {
                 console.log('successful token ' + this.accessToken);
                 let headers = new Headers({ 'Authorization': ' Bearer ' + this.accessToken });
                 let options = new RequestOptions({ headers: headers });
-                this.http.get('https://api.spotify.com/v1/me',options)
+                return this.http.get('https://api.spotify.com/v1/me',options)
                     .toPromise()
                     .then(this.extractData)
-                    .then((body :any)=> {
-                        console.log(body);
-                    })
                     .catch(this.handleError);
             })
             .catch(this.handleError);
@@ -38,9 +38,7 @@ export class APIService {
 
 
     private extractData(res: Response){
-        console.log(res);
         let body = res.json();
-        console.log(body.accessToken);
         return body || { };
     }
 

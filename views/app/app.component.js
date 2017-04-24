@@ -14,7 +14,11 @@ let AppComponent = class AppComponent {
     constructor(apiService) {
         this.apiService = apiService;
         this.name = 'Angular';
-        apiService.initialise();
+        apiService.initialise().then((user) => {
+            console.log(user);
+        }, error => {
+            console.log(error);
+        });
     }
 };
 AppComponent = __decorate([

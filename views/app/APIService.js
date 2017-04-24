@@ -23,7 +23,7 @@ let APIService = class APIService {
         this.accessToken = '';
     }
     initialise() {
-        this.http.get(this.apiUrl + '/token')
+        return this.http.get(this.apiUrl + '/token')
             .toPromise()
             .then(this.extractData)
             .then((body) => {
@@ -32,20 +32,15 @@ let APIService = class APIService {
             console.log('successful token ' + this.accessToken);
             let headers = new http_1.Headers({ 'Authorization': ' Bearer ' + this.accessToken });
             let options = new http_1.RequestOptions({ headers: headers });
-            this.http.get('https://api.spotify.com/v1/me', options)
+            return this.http.get('https://api.spotify.com/v1/me', options)
                 .toPromise()
                 .then(this.extractData)
-                .then((body) => {
-                console.log(body);
-            })
                 .catch(this.handleError);
         })
             .catch(this.handleError);
     }
     extractData(res) {
-        console.log(res);
         let body = res.json();
-        console.log(body.accessToken);
         return body || {};
     }
     handleError(error) {
