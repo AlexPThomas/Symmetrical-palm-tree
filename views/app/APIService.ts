@@ -4,7 +4,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 
-import {SpotifyUser, SpotifyImage} from './SpotifyObjects.js';
+import {SpotifyUser, SpotifyImage} from './SpotifyObjects';
 
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';

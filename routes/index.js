@@ -45,7 +45,8 @@ function getSpotifyToken(key, res) {
                 var randomKey = makeRandomString(6);
                 tempStorage.set(randomKey, token);
                 res.cookie('tokenKey', randomKey);
-                res.redirect("http://localhost:3000/main?tokenKey=" + randomKey);
+                res.cookie('accessToken',token);
+                res.redirect('http://localhost:3000/main');
             } else {
                 console.log(response.statusCode);
 
@@ -56,23 +57,17 @@ function getSpotifyToken(key, res) {
 
 router.get('/main',function(req, res){
     dbQueries.checkConnected();
-    var tokenKey = req.query.tokenKey;
-    var accessToken = tempStorage.get(tokenKey);
-    var tokenKeyFromCookies = req.cookies.tokenKey;
+    var accessToken = req.cookies.accessToken;
     if(accessToken){
         //save to database here along with refresh token, email, other info
     }
-    res.render('index', {title: 'Songbirds', tokenKey:tokenKey, accessToken: accessToken})
+    res.render('index', {title: 'Songbirds', accessToken: accessToken})
 
 });
 
 router.get('/token', function(req, res){
-    var tokenKey = req.cookies.tokenKey;
-    var accessToken = tempStorage.get(tokenKey);
+    var accessToken = req.cookies.accessToken;
     res.setHeader('Content-Type', 'application/json');
-    console.log(tokenKey);
-    console.log(accessToken);
-    //res.send(JSON.stringify({}));
     res.json({ accessToken: accessToken });
 });
 

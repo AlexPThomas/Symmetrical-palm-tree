@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {APIService} from './APIService.js'
 
-import {SpotifyUser, SpotifyImage} from './SpotifyObjects.js';
+import {SpotifyUser, SpotifyImage} from './SpotifyObjects';
 
 @Component({
   selector: 'my-app',
@@ -11,9 +11,11 @@ import {SpotifyUser, SpotifyImage} from './SpotifyObjects.js';
 
 export class AppComponent  {
     name = 'Angular';
+    currentUser : SpotifyUser;
     constructor(private apiService: APIService){
-        apiService.initialise().then((user :SpotifyUser)=> {
-            console.log(user);
+        apiService.initialise().then((user : SpotifyUser)=> {
+            this.currentUser = user;
+            console.log(this.currentUser);
         },
         error => {
             console.log(error);

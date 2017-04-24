@@ -4,10 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
 
 import { AppComponent }  from './app.component.js';
-
+import {LoaderComponent} from './loader.component.js'
 @NgModule({
   imports:      [ BrowserModule, FormsModule, HttpModule, JsonpModule],
-  declarations: [ AppComponent ],
+  declarations: [ AppComponent,LoaderComponent ],
   bootstrap:    [ AppComponent ]
 })
 

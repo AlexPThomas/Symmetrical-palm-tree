@@ -1,3 +1,6 @@
+/**
+ * Created by Alex on 24/04/2017.
+ */
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -9,26 +12,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 const core_1 = require("@angular/core");
-const APIService_js_1 = require("./APIService.js");
-let AppComponent = class AppComponent {
-    constructor(apiService) {
-        this.apiService = apiService;
-        this.name = 'Angular';
-        apiService.initialise().then((user) => {
-            this.currentUser = user;
-            console.log(this.currentUser);
-        }, error => {
-            console.log(error);
-        });
-    }
+let LoaderComponent = class LoaderComponent {
 };
-AppComponent = __decorate([
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Object)
+], LoaderComponent.prototype, "showLoader", void 0);
+LoaderComponent = __decorate([
     core_1.Component({
-        selector: 'my-app',
-        templateUrl: 'templates/mainComponent.html',
-        providers: [APIService_js_1.APIService]
-    }),
-    __metadata("design:paramtypes", [APIService_js_1.APIService])
-], AppComponent);
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+        selector: 'loader',
+        template: `
+    <div *ngIf="showLoader">
+        <div>Loading</div>
+    </div>
+  `
+    })
+], LoaderComponent);
+exports.LoaderComponent = LoaderComponent;
+//# sourceMappingURL=loader.component.js.map
