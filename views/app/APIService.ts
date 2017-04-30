@@ -4,7 +4,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 
-import {SpotifyUser, SpotifyImage} from './SpotifyObjects';
+import {SpotifyUser, SpotifyImage, SpotifyPlaylist} from './SpotifyObjects';
 
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
@@ -34,7 +34,14 @@ export class APIService {
             .catch(this.handleError);
     }
 
-
+    public getUserPlaylists(id: string): Promise<{items: SpotifyPlaylist[]}> {
+        let headers = new Headers({ 'Authorization': ' Bearer ' + this.accessToken });
+        let options = new RequestOptions({ headers: headers });
+        return this.http.get('https://api.spotify.com/v1/users/' + id + '/playlists', options)
+            .toPromise()
+            .then(this.extractData)
+            .catch(this.handleError);
+    }
 
 
     private extractData(res: Response){

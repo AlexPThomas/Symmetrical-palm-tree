@@ -17,6 +17,11 @@ let AppComponent = class AppComponent {
         apiService.initialise().then((user) => {
             this.currentUser = user;
             console.log(this.currentUser);
+            apiService.getUserPlaylists(this.currentUser.id).then((playlists) => {
+                console.log(playlists);
+            }, error => {
+                console.log(error);
+            });
         }, error => {
             console.log(error);
         });

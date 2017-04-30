@@ -39,6 +39,14 @@ let APIService = class APIService {
         })
             .catch(this.handleError);
     }
+    getUserPlaylists(id) {
+        let headers = new http_1.Headers({ 'Authorization': ' Bearer ' + this.accessToken });
+        let options = new http_1.RequestOptions({ headers: headers });
+        return this.http.get('https://api.spotify.com/v1/users/' + id + '/playlists', options)
+            .toPromise()
+            .then(this.extractData)
+            .catch(this.handleError);
+    }
     extractData(res) {
         let body = res.json();
         return body || {};

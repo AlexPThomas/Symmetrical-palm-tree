@@ -38,3 +38,6 @@ a {
 md-toolbar-row {
     justify-content: space-between;
 }
+md-toolbar {
+    margin-bottom:3px;
+}

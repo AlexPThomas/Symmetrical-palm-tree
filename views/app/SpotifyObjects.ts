@@ -15,3 +15,19 @@ export class SpotifyImage{
     width : number;
     url : string;
 }
+
+export class SpotifyPlaylist{
+    collaborative: boolean;
+    id: string;
+    images : SpotifyImage[];
+    name: string;
+    owner: {"href": string,
+        "id": string,
+        "type": string,
+        "uri": string};
+    public: boolean;
+    tracks: {
+            href: string;
+            total: number;
+        };
+}

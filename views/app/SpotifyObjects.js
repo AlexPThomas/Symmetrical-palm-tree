@@ -8,4 +8,7 @@ exports.SpotifyUser = SpotifyUser;
 class SpotifyImage {
 }
 exports.SpotifyImage = SpotifyImage;
+class SpotifyPlaylist {
+}
+exports.SpotifyPlaylist = SpotifyPlaylist;
 //# sourceMappingURL=SpotifyObjects.js.map
