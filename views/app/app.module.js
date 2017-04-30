@@ -9,13 +9,16 @@ const core_1 = require("@angular/core");
 const platform_browser_1 = require("@angular/platform-browser");
 const forms_1 = require("@angular/forms");
 const http_1 = require("@angular/http");
+const material_1 = require("@angular/material");
+const animations_1 = require("@angular/platform-browser/animations");
 const app_component_js_1 = require("./app.component.js");
 const loader_component_js_1 = require("./loader.component.js");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     core_1.NgModule({
-        imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, http_1.HttpModule, http_1.JsonpModule],
+        imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, http_1.HttpModule, http_1.JsonpModule,
+            material_1.MdButtonModule, material_1.MdCheckboxModule, animations_1.BrowserAnimationsModule],
         declarations: [app_component_js_1.AppComponent, loader_component_js_1.LoaderComponent],
         bootstrap: [app_component_js_1.AppComponent]
     })

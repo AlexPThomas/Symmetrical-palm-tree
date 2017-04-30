@@ -1,5 +1,7 @@
-<div *ngIf="currentUser">
-    <h1>Hello {{currentUser.display_name}}</h1>
+<div *ngIf="currentUser" class="mat-app-background">
+    <h1>Welcome {{currentUser.display_name}}</h1>
     <img class="userPicture" src="{{currentUser.images[0].url}}">
+    <button md-button color="accent">Click me!</button>
 </div>
 <loader [showLoader] = "!currentUser"></loader>
+

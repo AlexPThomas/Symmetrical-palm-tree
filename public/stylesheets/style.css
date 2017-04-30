@@ -1,5 +1,5 @@
 body {
-  padding: 50px;
+  padding: 20px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: black;
   color: white;
@@ -17,6 +17,6 @@ a {
 }
 
 .userPicture{
-  height:5vw;
+  height:60px;
   border-radius: 50%;
 }
