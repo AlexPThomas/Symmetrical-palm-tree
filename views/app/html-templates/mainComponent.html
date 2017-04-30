@@ -1,4 +1,4 @@
-<md-toolbar color="accent">
+<md-toolbar color="primary">
 
     <span> <img class="logo" src="/images/love-birds.png"></span>
 
@@ -8,14 +8,15 @@
     </button>
 
 </md-toolbar>
-
-<md-card color="accent">
-    <md-card-title *ngIf="currentUser" class="center-text padding-5">
-        <h2 class="no-margin">Welcome {{currentUser.display_name}}</h2>
-        <img class="userPicture" src="{{currentUser.images[0].url}}">
-    </md-card-title>
-    <loader  [showLoader] = "!currentUser"></loader>
-    <button md-raised-button color="primary">Click me!</button>
-</md-card>
+<div class="app-body">
+    <md-card color="accent">
+        <md-card-title *ngIf="currentUser" class="center-text padding-5">
+            <h2 class="no-margin">Welcome {{currentUser.display_name}}</h2>
+            <img class="userPicture" src="{{currentUser.images[0].url}}">
+        </md-card-title>
+        <loader  [showLoader] = "!currentUser"></loader>
+        <button md-raised-button color="primary">Click me!</button>
+    </md-card>
+</div>
 
 

@@ -2,6 +2,7 @@ body {
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
     background-color: black;
     color: white;
+    margin:0;
 }
 
 a {
@@ -39,5 +40,9 @@ md-toolbar-row {
     justify-content: space-between;
 }
 md-toolbar {
-    margin-bottom:3px;
+    margin-bottom:10px;
+}
+.app-body{
+    margin-left:3vw;
+    margin-right:3vw;
 }
