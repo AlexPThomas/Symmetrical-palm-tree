@@ -18,7 +18,7 @@ let AppModule = class AppModule {
 AppModule = __decorate([
     core_1.NgModule({
         imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, http_1.HttpModule, http_1.JsonpModule,
-            material_1.MdButtonModule, material_1.MdCheckboxModule, material_1.MdCardModule, animations_1.BrowserAnimationsModule, material_1.MdProgressSpinnerModule],
+            material_1.MdButtonModule, material_1.MdCheckboxModule, material_1.MdCardModule, animations_1.BrowserAnimationsModule, material_1.MdProgressSpinnerModule, material_1.MdToolbarModule, material_1.MdIconModule],
         declarations: [app_component_js_1.AppComponent, loader_component_js_1.LoaderComponent],
         bootstrap: [app_component_js_1.AppComponent]
     })

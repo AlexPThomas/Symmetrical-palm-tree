@@ -1,6 +1,17 @@
-<md-card class="mat-app-background">
+<md-toolbar color="accent">
+
+    <span> <img class="logo" src="/images/love-birds.png"></span>
+
+    <span><h1 class="center-text">Song birds</h1></span>
+    <button md-icon-button >
+        <md-icon>more_vert</md-icon>
+    </button>
+
+</md-toolbar>
+
+<md-card color="accent">
     <md-card-title *ngIf="currentUser" class="center-text padding-5">
-        <h1 class="no-margin">Welcome {{currentUser.display_name}}</h1>
+        <h2 class="no-margin">Welcome {{currentUser.display_name}}</h2>
         <img class="userPicture" src="{{currentUser.images[0].url}}">
     </md-card-title>
     <loader  [showLoader] = "!currentUser"></loader>
