@@ -1,22 +1,38 @@
 body {
-  padding: 20px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: black;
-  color: white;
+    padding: 20px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    background-color: black;
+    color: white;
 }
 
 a {
-  color: #00B7FF;
+    color: #00B7FF;
 }
 
 .logo{
-  margin: auto;
-  height: 10vw;
-  padding: 3px;
-  display: block;
+    margin: auto;
+    height: 10vw;
+    padding: 3px;
+    display: block;
 }
 
-.userPicture{
-  height:60px;
-  border-radius: 50%;
+.userPicture {
+    height:60px;
+    border-radius: 50%;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.padding-5 {
+    padding: 5px;
+}
+
+.no-margin {
+    margin: 0;
+}
+
+.center-spinner {
+    margin: 0 auto;
 }

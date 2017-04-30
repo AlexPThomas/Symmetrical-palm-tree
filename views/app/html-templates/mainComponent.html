@@ -1,7 +1,10 @@
-<div *ngIf="currentUser" class="mat-app-background">
-    <h1>Welcome {{currentUser.display_name}}</h1>
-    <img class="userPicture" src="{{currentUser.images[0].url}}">
-    <button md-button color="accent">Click me!</button>
-</div>
-<loader [showLoader] = "!currentUser"></loader>
+<md-card class="mat-app-background">
+    <md-card-title *ngIf="currentUser" class="center-text padding-5">
+        <h1 class="no-margin">Welcome {{currentUser.display_name}}</h1>
+        <img class="userPicture" src="{{currentUser.images[0].url}}">
+    </md-card-title>
+    <loader  [showLoader] = "!currentUser"></loader>
+    <button md-raised-button color="primary">Click me!</button>
+</md-card>
+
 

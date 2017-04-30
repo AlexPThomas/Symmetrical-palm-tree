@@ -8,7 +8,7 @@ import { Component, Input } from '@angular/core';
     selector: 'loader',
     template: `
     <div *ngIf="showLoader">
-        <div>Loading</div>
+        <md-spinner style="margin:0 auto;"></md-spinner>
     </div>
   `
 })

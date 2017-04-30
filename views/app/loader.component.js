@@ -23,7 +23,7 @@ LoaderComponent = __decorate([
         selector: 'loader',
         template: `
     <div *ngIf="showLoader">
-        <div>Loading</div>
+        <md-spinner style="margin:0 auto;"></md-spinner>
     </div>
   `
     })
