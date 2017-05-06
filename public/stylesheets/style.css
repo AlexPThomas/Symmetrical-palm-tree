@@ -16,9 +16,18 @@ a {
     display: block;
 }
 
-.userPicture {
+.image {
     height:100px;
     border-radius: 50%;
+}
+
+.image.medium {
+    height:60px;
+
+}
+
+.image.boxy {
+    border-radius: 20%;
 }
 
 .center-text {
@@ -45,4 +54,43 @@ md-toolbar {
 .app-body{
     margin-left:3vw;
     margin-right:3vw;
+}
+
+.inline {
+    display: inline-block;
+}
+
+.background-accent {
+    background: #208c2e;
+}
+
+.playlist-selector {
+    width: 450px;
+    padding-right:10px;
+}
+
+.playlist-selector md-list {
+    max-height: 40vh;
+    overflow-y: scroll;
+}
+
+.mat-card.playlist-list-card {
+    width: 80%;
+    background: rgba(58, 150, 70, 0.9);
+    border-radius: 0px 10px 10px 0px;
+    margin:5px;
+    padding:5px;
+    cursor: pointer;
+}
+
+.mat-card.playlist-list-card :hover {
+    background: #7b1fa2;
+}
+
+.playlist-list-item {
+    height: 60px;
+}
+
+.playlist-list-item > .mat-ripple {
+    overflow:visible;
 }

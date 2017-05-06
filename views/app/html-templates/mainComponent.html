@@ -9,14 +9,37 @@
 
 </md-toolbar>
 <div class="app-body">
-    <md-card color="accent">
-        <md-card-title *ngIf="currentUser" class="center-text padding-5">
-            <h2 class="no-margin">Welcome {{currentUser.display_name}}</h2>
-            <img class="userPicture" src="{{currentUser.images[0].url}}">
-        </md-card-title>
-        <loader  [showLoader] = "!currentUser"></loader>
-        <button md-raised-button color="primary">Click me!</button>
+    <md-card >
+        <div>
+            <md-card-title *ngIf="currentUser" class="center-text padding-5">
+                <h2 class="no-margin">Hi {{currentUser.display_name}}</h2>
+                <img class="image" src="{{currentUser.images[0].url}}">
+            </md-card-title>
+            <loader  [showLoader] = "!currentUser"></loader>
+        </div>
+        <md-card class="playlist-selector">
+            <div *ngIf="currentUser">
+                <md-card-title class="center-text no-margin">
+                    <h3 class="no-margin">Your playlists</h3>
+                    <img class="image medium boxy" style="position:absolute; left:10px;top:10px;" src="{{currentUser.images[0].url}}">
+                </md-card-title>
+                <md-card-content *ngIf="currentUser.playlists">
+                    <md-list>
+                        <md-list-item class="playlist-list-item"*ngFor="let playlist of currentUser.playlists">
+                            <md-card class="playlist-list-card background-accent">
+                                    <md-card-title >
+                                        <img md-list-avatar src="{{playlist.images[0].url}}">
+                                        {{playlist.name}}
+                                    </md-card-title>
+                            </md-card>
+                        </md-list-item>
+                    </md-list>
+                </md-card-content>
+                <loader [showLoader] = "!currentUser.playlists"></loader>
+            </div>
+        </md-card>
     </md-card>
+    <button md-raised-button color="primary">Click me!</button>
 </div>
 
 

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import {APIService} from './APIService.js'
 
 import {SpotifyUser, SpotifyImage, SpotifyPlaylist} from './SpotifyObjects';
@@ -18,6 +18,7 @@ export class AppComponent  {
             console.log(this.currentUser);
             apiService.getUserPlaylists(this.currentUser.id).then((playlists: {items: SpotifyPlaylist[]})=>{
                 console.log(playlists);
+                this.currentUser.playlists = playlists.items;
             },
             error =>{
                 console.log(error);

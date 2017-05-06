@@ -19,6 +19,7 @@ let AppComponent = class AppComponent {
             console.log(this.currentUser);
             apiService.getUserPlaylists(this.currentUser.id).then((playlists) => {
                 console.log(playlists);
+                this.currentUser.playlists = playlists.items;
             }, error => {
                 console.log(error);
             });

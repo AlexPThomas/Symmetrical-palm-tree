@@ -7,6 +7,7 @@ export class SpotifyUser {
     email : string;
     id : string;
     images : SpotifyImage[];
+    playlists : SpotifyPlayList[];
 
 }
 
