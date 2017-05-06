@@ -26,7 +26,7 @@
                 <md-card-content *ngIf="currentUser.playlists">
                     <md-list>
                         <md-list-item class="playlist-list-item"*ngFor="let playlist of currentUser.playlists">
-                            <md-card class="playlist-list-card background-accent">
+                            <md-card md-ripple [mdRippleColor]="white" class="playlist-list-card hover background-accent">
                                     <md-card-title >
                                         <img md-list-avatar src="{{playlist.images[0].url}}">
                                         {{playlist.name}}

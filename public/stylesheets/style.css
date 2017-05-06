@@ -83,7 +83,7 @@ md-toolbar {
     cursor: pointer;
 }
 
-.mat-card.playlist-list-card :hover {
+.mat-card.playlist-list-card:hover {
     background: #7b1fa2;
 }
 
