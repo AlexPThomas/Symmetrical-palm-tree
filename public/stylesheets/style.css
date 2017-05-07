@@ -23,7 +23,6 @@ a {
 
 .image.medium {
     height:60px;
-
 }
 
 .image.boxy {
@@ -65,9 +64,18 @@ md-toolbar {
 }
 
 .playlist-selector {
-    width: 450px;
-
+    width: 400px;
 }
+
+.playlist-selector.right {
+    float:right;
+}
+
+.mat-card.playlist-selector {
+    display:inline-block;
+}
+
+
 
 .mat-card.playlist-selector {
     padding-right:2px;
@@ -102,4 +110,13 @@ md-toolbar {
 
 .playlist-list-item > .mat-ripple {
     overflow:visible;
+}
+
+.selection-box {
+    margin:auto;
+    width:200px;
+    display:inline-block;
+    position: absolute;
+    top: 40%; left: 50%;
+    transform: translate(-50%,-50%);
 }
