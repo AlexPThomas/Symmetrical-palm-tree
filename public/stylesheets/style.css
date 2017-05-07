@@ -88,6 +88,7 @@ md-toolbar {
     margin:5px;
     padding:5px;
     cursor: pointer;
+    user-select: none;
 }
 
 .mat-card.playlist-list-card:hover {

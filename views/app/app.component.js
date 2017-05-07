@@ -10,10 +10,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 const core_1 = require("@angular/core");
 const APIService_js_1 = require("./APIService.js");
+const SpotifyObjects_js_1 = require("./SpotifyObjects.js");
 let AppComponent = class AppComponent {
     constructor(apiService) {
         this.apiService = apiService;
         this.name = 'Angular';
+        this.selectedPlaylistLeft = new SpotifyObjects_js_1.SpotifyPlaylist();
         apiService.initialise().then((user) => {
             this.currentUser = user;
             console.log(this.currentUser);
@@ -27,12 +29,21 @@ let AppComponent = class AppComponent {
             console.log(error);
         });
     }
+    setLeftPlaylist(playlist) {
+        this.selectedPlaylistLeft = playlist;
+    }
 };
 AppComponent = __decorate([
     core_1.Component({
         selector: 'my-app',
         templateUrl: 'templates/mainComponent.html',
-        providers: [APIService_js_1.APIService]
+        providers: [APIService_js_1.APIService],
+        styles: [`
+                .selected-left {
+                    background: #7b1fa2;
+                    margin-left:20px;
+                }
+            `]
     }),
     __metadata("design:paramtypes", [APIService_js_1.APIService])
 ], AppComponent);
