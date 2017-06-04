@@ -104,6 +104,16 @@ md-toolbar {
     margin-left:20px;
 }
 
+.mat-card.playlist-list-card.playlist-list-card-right:hover {
+    background: #7b1fa2;
+    margin-left:40px;
+}
+
+.mat-card.playlist-list-card.playlist-list-card-right {
+    margin-left:60px;
+    border-radius: 10px 0px 0px 10px;
+}
+
 .playlist-list-item {
     height: 60px;
 }

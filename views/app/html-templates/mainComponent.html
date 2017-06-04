@@ -29,7 +29,7 @@
                     <md-card-content *ngIf="currentUser.playlists">
                         <md-list>
                             <md-list-item class="playlist-list-item"*ngFor="let playlist of currentUser.playlists">
-                                <md-card md-ripple [mdRippleColor]="white" class="playlist-list-card hover background-accent" [class.selected-left] ="playlist.id === selectedPlaylistLeft.id" (click)="setLeftPlaylist(playlist)">
+                                <md-card md-ripple [mdRippleColor]="white" class="playlist-list-card hover background-accent" [class.selected-left] ="playlist.id === selectedPlaylistLeft.id" (click)="setSelectedPlaylist('Left', playlist)">
                                     <md-card-title >
                                         <img md-list-avatar src="{{playlist.images[0].url}}">
                                         {{playlist.name}}
@@ -55,7 +55,7 @@
                     <md-card-content *ngIf="currentUser.playlists">
                         <md-list>
                             <md-list-item class="playlist-list-item"*ngFor="let playlist of currentUser.playlists">
-                                <md-card md-ripple [mdRippleColor]="white" class="playlist-list-card hover background-accent" [class.selected-left] ="playlist.id === selectedPlaylistLeft.id" (click)="setLeftPlaylist(playlist)">
+                                <md-card md-ripple [mdRippleColor]="white" class="playlist-list-card hover background-accent playlist-list-card-right" [class.selected-right] ="playlist.id === selectPlaylistRight.id" (click)="setSelectedPlaylist('Right', playlist)">
                                     <md-card-title >
                                         <img md-list-avatar src="{{playlist.images[0].url}}">
                                         {{playlist.name}}

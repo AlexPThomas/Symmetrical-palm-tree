@@ -12,6 +12,10 @@ import {SpotifyUser, SpotifyImage, SpotifyPlaylist} from './SpotifyObjects.js';
                     background: #7b1fa2;
                     margin-left:20px;
                 }
+                .selected-right {
+                    background: #7b1fa2;
+                    margin-left:40px !important; 
+                }
             `]
 })
 
@@ -19,7 +23,7 @@ export class AppComponent  {
     name = 'Angular';
     currentUser : SpotifyUser;
     selectedPlaylistLeft : SpotifyPlaylist = new SpotifyPlaylist();
-
+    selectPlaylistRight : SpotifyPlaylist = new SpotifyPlaylist();
 
     constructor(private apiService: APIService){
         apiService.initialise().then((user : SpotifyUser)=> {
@@ -38,7 +42,13 @@ export class AppComponent  {
         });
     }
 
-    setLeftPlaylist(playlist : SpotifyPlaylist) : void {
-        this.selectedPlaylistLeft = playlist;
+    setSelectedPlaylist(side : string,  playlist : SpotifyPlaylist) : void {
+        if(side === 'Left'){
+            this.selectedPlaylistLeft = playlist
+        } else {
+            this.selectPlaylistRight = playlist;
+        }
     }
+
+
 }

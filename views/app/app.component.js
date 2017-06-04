@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@angular/core");
 const APIService_js_1 = require("./APIService.js");
 const SpotifyObjects_js_1 = require("./SpotifyObjects.js");
@@ -16,6 +17,7 @@ let AppComponent = class AppComponent {
         this.apiService = apiService;
         this.name = 'Angular';
         this.selectedPlaylistLeft = new SpotifyObjects_js_1.SpotifyPlaylist();
+        this.selectPlaylistRight = new SpotifyObjects_js_1.SpotifyPlaylist();
         apiService.initialise().then((user) => {
             this.currentUser = user;
             console.log(this.currentUser);
@@ -29,8 +31,13 @@ let AppComponent = class AppComponent {
             console.log(error);
         });
     }
-    setLeftPlaylist(playlist) {
-        this.selectedPlaylistLeft = playlist;
+    setSelectedPlaylist(side, playlist) {
+        if (side === 'Left') {
+            this.selectedPlaylistLeft = playlist;
+        }
+        else {
+            this.selectPlaylistRight = playlist;
+        }
     }
 };
 AppComponent = __decorate([
@@ -42,6 +49,10 @@ AppComponent = __decorate([
                 .selected-left {
                     background: #7b1fa2;
                     margin-left:20px;
+                }
+                .selected-right {
+                    background: #7b1fa2;
+                    margin-left:40px !important; 
                 }
             `]
     }),

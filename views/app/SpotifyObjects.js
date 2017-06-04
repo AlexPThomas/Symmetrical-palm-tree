@@ -1,7 +1,8 @@
+"use strict";
 /**
  * Created by Alex on 24/04/2017.
  */
-"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 class SpotifyUser {
 }
 exports.SpotifyUser = SpotifyUser;
